@@ -1,0 +1,24 @@
+{
+  "name": "edge2html",
+  "version": "1.0.0",
+  "description": "",
+  "bin": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarstone/edge2html.git"
+  },
+  "keywords": [],
+  "author": "jarstone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jarstone/edge2html/issues"
+  },
+  "homepage": "https://github.com/jarstone/edge2html#readme",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "chokidar": "^3.5.2",
+    "condense-newlines": "^0.2.1",
+    "edge.js": "^5.3.2",
+    "js-beautify": "^1.14.0"
+  }
+}
