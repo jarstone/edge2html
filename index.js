@@ -54,8 +54,9 @@ const util = {
 }
 
 // Arguments
-const src = process.argv[process.argv.length - 3]
-const dst = process.argv[process.argv.length - 2]
+// replace backslash, in case of running on windows
+const src = process.argv[process.argv.length - 3].replace(/\\/g, '/')
+const dst = process.argv[process.argv.length - 2].replace(/\\/g, '/')
 
 // Get data
 const getData = () => util.requireUncached(path.resolve(src) + '/data.json')
