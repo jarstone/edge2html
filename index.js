@@ -70,6 +70,7 @@ edge.mount(path.resolve(src))
 async function renderToHtml(filename) {
 	let content = await edge.render(filename.split('/').pop(), data)
 	content = await importSvg(content)
+	content = await importText(content)
 
 	// if build, beautify
 	if (process.argv.includes('--build')) {
@@ -182,6 +183,18 @@ async function importSvg(content) {
 				tagContent = tagContent.replace('<svg', `<svg ${tagAttr}`)
 			}
 			content = content.replace(tag, tagContent)
+		}
+	}
+	return content
+}
+
+async function importText(content) {
+	let text = content.match(/@text\(\s*(['"])(.+?)\1\s*(,\s*({.+?})\s*)?\)/g)
+	if (text) {
+		for (const tag of text) {
+			const url = tag.replace(/'/g, '').match(/\(([^)]+)\)/)[1]
+			let textContent = await require('axios').default.get(url).then(res => res.data.trim())
+			content = content.replace(tag, textContent)
 		}
 	}
 	return content
